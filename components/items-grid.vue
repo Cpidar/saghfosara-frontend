@@ -2,7 +2,7 @@
   <div
     class="uk-section-muted uk-section uk-section-large"
     tm-header-transparent="dark"
-    uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-small; delay: false; hidden: true"
+    uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: false; hidden: true"
   >
     <div class="uk-container uk-container-xlarge">
       <div class="tm-header-placeholder uk-margin-remove-adjacent"></div>
@@ -27,15 +27,15 @@
                     <img
                       class="el-image"
                       alt
-                      :data-src="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
-                      :data-srcset="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
+                      :data-src="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
+                      :data-srcset="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
                       data-sizes="(min-width: 610px) 610px"
                       data-width="610"
                       data-height="407"
                       uk-img
                       sizes="(min-width: 610px) 610px"
-                      :srcset="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
-                      :src="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
+                      :srcset="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
+                      :src="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
                     />
                   </div>
                   <div class="uk-card-body uk-margin-remove-first-child">
@@ -97,7 +97,7 @@ export default {
   props: ["title", "items", "PageSize", "HasMore"],
   data() {
     return {
-      server: API_SERVER,
+      server: '',
       page: 0
     };
   },

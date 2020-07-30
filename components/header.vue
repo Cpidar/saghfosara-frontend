@@ -102,7 +102,7 @@
                 <div class="uk-panel textwidget">
                   <a
                     class="uk-button uk-button-primary"
-                    href="#modal-full"
+                    href="/form"
                     uk-toggle
                   >ثبت رایگان آگهی</a>
                 </div>

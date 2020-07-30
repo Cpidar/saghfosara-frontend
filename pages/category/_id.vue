@@ -1,20 +1,23 @@
 <template>
-<div>
-  <div id="template-oHp7Wns_#0-0-0-0" class="uk-position-absolute uk-width-1-1 uk-text-left" uk-parallax="y: 0,-9vh; easing: 0.5;" style="right: 33vw; top: 20vh; transform: translateY(0vh);">
-        <img class="el-image" alt="" target="!*" src="/resources-hero-left.svg">    
-    
-</div>
-<div id="template-oHp7Wns_#0-0-0-1" class="uk-position-absolute uk-width-1-1 uk-text-right" uk-parallax="y: 4vh,-10vh; easing: 0.5;" style="right: -30vw; transform: translateY(4vh);">
-        <img class="el-image" alt="" target="!*" src="/resources-hero-right.svg">    
-    
-</div>
-  <items-grid
-    :title="title"
-    :page-size="this.pageSize"
-    :items="homes"
-    :has-more="hasMore"
-  />
-</div>
+  <div>
+    <div
+      id="template-oHp7Wns_#0-0-0-0"
+      class="uk-position-absolute uk-width-1-1 uk-text-left"
+      uk-parallax="y: 0,-9vh; easing: 0.5;"
+      style="right: 33vw; top: 20vh; transform: translateY(0vh);"
+    >
+      <img class="el-image" alt target="!*" src="/resources-hero-left.svg" />
+    </div>
+    <div
+      id="template-oHp7Wns_#0-0-0-1"
+      class="uk-position-absolute uk-width-1-1 uk-text-right"
+      uk-parallax="y: 4vh,-10vh; easing: 0.5;"
+      style="right: -30vw; transform: translateY(4vh);"
+    >
+      <img class="el-image" alt target="!*" src="/resources-hero-right.svg" />
+    </div>
+    <items-grid :title="title" :page-size="this.pageSize" :items="homes" :has-more="hasMore" />
+  </div>
 </template>
 
 <script>
@@ -24,14 +27,14 @@ import ItemsGrid from "~/components/items-grid.vue";
 
 export default {
   components: {
-    ItemsGrid
+    ItemsGrid,
   },
   data() {
     return {
       id: this.$route.params.id,
       category: { name: "", homes: [] },
       pageSize: 1,
-      hasMore: true
+      hasMore: true,
     };
   },
   computed: {
@@ -40,7 +43,7 @@ export default {
     },
     homes() {
       return this.category.homes;
-    }
+    },
   },
   // apollo: {
   //   category: {
@@ -78,16 +81,34 @@ export default {
     //         this.category.id - 1
     //       ].connection.aggregate.count;
     //       this.hasMore = homeCount > start + 1;
-
     //       return {
     //         category: {
-    //           ...previousResult.category,  
+    //           ...previousResult.category,
     //           homes: [...previousResult.category.homes, ...newHomes]
     //         }
     //       };
     //     }
     //   });
     // }
-  }
+  },
+  async asyncData({ $content, $axios }) {
+    const id = this.$route.params.id
+    const homes = await $axios.$post("/collections/get/property", {
+      token: process.env.apiToken,
+      filter: { published: true, assignment: { display: id } },
+    });
+
+    const category = await $axios.$post("/collections/get/assignment", {
+      token: process.env.apiToken,
+      filter: { published: true, id },
+    });
+
+
+    return {
+      homes,
+      category,
+      title: category.entries[0].name,
+    };
+  },
 };
 </script>

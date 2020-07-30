@@ -92,8 +92,8 @@ export default {
     }
   },
   async asyncData ({ $content,  $axios}) {
-    const homes = await $content('homes').fetch()
-    const homesApi = await $axios.$post('/collections/get/property', {
+    // const homes = await $content('homes').fetch()
+    const homes = await $axios.$post('/collections/get/property', {
       token: process.env.apiToken,
       filter: {published:true}
     })
@@ -101,13 +101,17 @@ export default {
         token: process.env.apiToken
     })
 
-    const posts = await $content('posts').fetch()
+    // const posts = await $content('posts').fetch()
+    const postApi = await $axios.$post('/collections/get/blog', {
+      token: process.env.apiToken,
+      filter: {published:true}
+    }) 
 
     return {
-      homes,
-      homesApi,
+      // homes,
+      homes: homes.entries,
       categories: categories.entries,
-      posts
+      posts: postApi.entries
     }
   }
 };

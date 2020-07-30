@@ -1,9 +1,9 @@
 <template>
-  <div id="modal-full" uk-modal="bg-close: false">
-    <div class="uk-modal-dialog">
-      <button class="uk-modal-close-full uk-close-medim" type="button" uk-close></button>
+  <div class="uk-card uk-card-default">
+    <div class="uk-card-header">
+      <!-- <button class="uk-modal-close-full uk-close-medim" type="button" uk-close></button> -->
 
-      <div class="uk-modal-body">
+      <div class="uk-card-body">
         <form
           class="uk-grid-small uk-grid uk-grid-stack"
           ref="adForm"
@@ -127,9 +127,9 @@
           </div>
         </form>
       </div>
-      <div class="uk-modal-footer uk-text-left">
+      <div class="uk-card-footer uk-text-left">
         <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-        <button class="uk-button uk-button-primary" type="button" @click="createHome">Save</button>
+        <button class="uk-button uk-button-primary" type="button" @click="submit">Save</button>
       </div>
     </div>
   </div>
@@ -230,7 +230,13 @@ export default {
     },
     removeImage(index) {
       this.pics.splice(index, 1);
-    }
+    },
+    async submit() {
+      const homes = await this.$axios.$post("/forms/submit/homeFromCustomer", {
+        token: process.env.apiToken,
+        form: this.formData,
+      });
+    },
   }
 };
 </script>

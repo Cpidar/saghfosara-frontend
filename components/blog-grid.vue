@@ -1,9 +1,12 @@
 <template>
-  <div class="uk-section-muted uk-section uk-section-large uk-padding-remove-bottom">
+  <div
+    class="uk-section-muted uk-section uk-section-large uk-padding-remove-bottom"
+    uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-small; delay: false; hidden: true"
+  >
     <div class="uk-container uk-container-large">
       <div class="tm-grid-expand uk-margin-large uk-grid uk-grid-stack" uk-grid>
         <div class="uk-width-1-1@m uk-first-column">
-          <h2 class="uk-h1">تازه ترین مطالب بلاگ</h2>
+          <h2 class="uk-h1" uk-scrollspy-class>تازه ترین مطالب بلاگ</h2>
         </div>
       </div>
       <div class="tm-grid-expand uk-grid-column-large uk-margin-large uk-grid" uk-grid>
@@ -11,10 +14,11 @@
           <div class="uk-divider-small uk-margin-medium"></div>
           <div
             class="uk-margin uk-width-medium@m"
+            uk-scrollspy-class
           >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است،</div>
         </div>
 
-<!-- icon grid -->
+        <!-- icon grid -->
         <div class="uk-width-3-4@l">
           <div class="uk-margin">
             <div
@@ -33,21 +37,19 @@
                       width="610"
                       height="355"
                       uk-img
-                      :data-src="post.image.path"
+                      :data-src="baseImagePath + post.image.path"
                       sizes="(min-width: 610px) 610px"
                     />
                   </div>
                   <div class="uk-card-body uk-margin-remove-first-child">
-                    <h3
-                      class="el-title uk-h4 uk-margin-top uk-margin-remove-bottom"
-                    >{{post.title}}</h3>
+                    <h3 class="el-title uk-h4 uk-margin-top uk-margin-remove-bottom">{{post.title}}</h3>
                     <div class="el-meta uk-text-meta uk-margin-top">02 April 2020</div>
                   </div>
                 </a>
               </div>
             </div>
           </div>
-        <!-- see all -->
+          <!-- see all -->
           <div class="uk-margin-large uk-text-right@m">
             <a
               class="el-content uk-button uk-button-text"
@@ -62,6 +64,11 @@
 
 <script>
 export default {
-  props: ['posts']
+  props: ["posts"],
+  computed: {
+    baseImagePath() {
+      return process.env.imagePath;
+    },
+  },
 };
 </script>

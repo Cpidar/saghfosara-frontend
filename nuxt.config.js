@@ -60,8 +60,13 @@ export default {
   */
   buildModules: [
     // '@nuxtjs/pwa',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/google-analytics',
   ],
+
+  googleAnalytics: {
+    id: 'UA-173357207-1'
+  },
 
   loading: true,
   loadingIndicator: {
