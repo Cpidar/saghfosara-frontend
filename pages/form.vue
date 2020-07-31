@@ -1,7 +1,7 @@
 <template>
   <div class="uk-section-muted uk-section uk-section-large">
     <div class="uk-container uk-container-small">
-      <form-modal />
+      <form-modal :categories="categories" :neighborhoods="neighborhoods" :types="types" />
     </div>
   </div>
 </template>
@@ -13,9 +13,21 @@ export default {
   components: {
     FormModal,
   },
-
-  methods: {
-
+  async asyncData({ $axios }) {
+    const categories = await $axios.$get("/categories", {
+      // token: process.env.apiToken
+    });
+    const neighborhoods = await $axios.$get("/neighborhoods", {
+      // token: process.env.apiToken
+    });
+    const types = await $axios.$get("/types", {
+      // token: process.env.apiToken
+    });
+    return {
+      categories,
+      neighborhoods,
+      types,
+    };
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="uk-container">
       <div class="tm-header-placeholder uk-margin-remove-adjacent" style="height: 100px;"></div>
       <div class="tm-grid-expand uk-grid-column-large uk-grid-margin uk-grid" uk-grid>
-        <description :title="home.title"/>
+        <description :item="home"/>
         <slide-show :images="home.pics" />
       </div>
       <!-- <similar-item /> -->
@@ -23,13 +23,6 @@ export default {
     SlideShow,
     SimilarItem
   },
-  data() {
-    return {
-      id: this.$route.params.id,
-      home: {}
-    };
-  },
-
   // apollo: {
   //   home: {
   //     prefetch: false,
@@ -43,8 +36,8 @@ export default {
   //   }
   // }
 
-    async asyncData ({ $content, params }) {
-    const home = await $content(`homes/${params.id}`).fetch()
+    async asyncData ({ $axios, params }) {
+    const home = await $axios.$get(`properties/${params.id}`)
 
     return {
       home

@@ -60,7 +60,7 @@ export default {
   */
   buildModules: [
     // '@nuxtjs/pwa',
-    '@nuxt/content',
+    // '@nuxt/content',
     '@nuxtjs/google-analytics',
   ],
 
@@ -80,10 +80,18 @@ export default {
   modules: [
     // '@nuxtjs/apollo',
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit'
   ],
 
   axios: {
-    baseURL: 'http://saghfosara.ir/bk/api', // Used as fallback if no runtime config is provided
+    baseURL: 'http://saghfosara.ir/api', // Used as fallback if no runtime config is provided
+  },
+
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true
   },
 
   // apollo: {
@@ -96,7 +104,7 @@ export default {
 
   env: {
     // strapiBaseUri: process.env.API_URL || "http://localhost"
-    apiUrl: 'http://saghfosara.ir/bk/api',
+    apiUrl: 'http://saghfosara.ir/api',
     baseUrl: 'http://saghfosara.ir/bk',
     imagePath: 'http://saghfosara.ir/bk/storage/uploads',
     apiToken: 'account-7fe22184138b26f1dc495a91aeb006'
@@ -107,5 +115,6 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    // analyze: true
   }
 }

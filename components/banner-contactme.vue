@@ -4,7 +4,7 @@
     uk-scrollspy="target: [uk-scrollspy-class]; cls:; delay: false;"
   >
     <div
-      src="/images/bottom-bg.svg"
+      data-src="/images/bottom-bg.svg"
       uk-img
       class="uk-background-norepeat uk-background-contain uk-background-bottom-right uk-section uk-section-xlarge"
       uk-parallax="bgx: -120,-120;bgy: 420,120;easing: 0.5"

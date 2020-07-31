@@ -27,15 +27,15 @@
                     <img
                       class="el-image"
                       alt
-                      :data-src="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
-                      :data-srcset="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
+                      :data-src="home.pics[0] ? server+home.pics[0].url : '/images/default.jpg'"
+                      :data-srcset="home.pics[0] ? server+home.pics[0].url : '/images/default.jpg'"
                       data-sizes="(min-width: 610px) 610px"
                       data-width="610"
                       data-height="407"
                       uk-img
                       sizes="(min-width: 610px) 610px"
-                      :srcset="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
-                      :src="home.pics[0] ? server+home.pics[0].path : '/default.jpg'"
+                      :srcset="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
+                      :src="home.pics[0] ? server+home.pics[0].url : '/default.jpg'"
                     />
                   </div>
                   <div class="uk-card-body uk-margin-remove-first-child">
@@ -97,7 +97,7 @@ export default {
   props: ["title", "items", "PageSize", "HasMore"],
   data() {
     return {
-      server: '',
+      server: process.env.apiUrl,
       page: 0
     };
   },

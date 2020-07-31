@@ -91,23 +91,23 @@ export default {
     //   });
     // }
   },
-  async asyncData({ $content, $axios }) {
-    const id = this.$route.params.id
-    const homes = await $axios.$post("/collections/get/property", {
-      token: process.env.apiToken,
-      filter: { published: true, assignment: { display: id } },
+  async asyncData({ $content, $axios, params }) {
+    const homes = await $axios.$get(`/properties`, {
+      // token: process.env.apiToken,
+      params: {
+        published: true,
+        category: params.id,
+      },
     });
 
-    const category = await $axios.$post("/collections/get/assignment", {
-      token: process.env.apiToken,
-      filter: { published: true, id },
+    const category = await $axios.$get(`/categories/${params.id}`, {
+      // token: process.env.apiToken,
     });
-
 
     return {
       homes,
       category,
-      title: category.entries[0].name,
+      title: category.name,
     };
   },
 };

@@ -15,7 +15,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="/themes/wordpress/2020/design-bites/index.php?page_id=160"
+                  href="#about"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >درباره ما</a>
               </div>
@@ -23,7 +23,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="/themes/wordpress/2020/design-bites/index.php?page_id=160#license-faq"
+                  href="/licence"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >مجوزها</a>
               </div>
@@ -31,7 +31,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="/themes/wordpress/2020/design-bites/index.php?page_id=1357"
+                  href="/blog"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >مجله سقف و سرا</a>
               </div>
@@ -39,7 +39,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="/themes/wordpress/2020/design-bites/index.php?page_id=5"
+                  href="/site-map"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >نقشه سایت</a>
               </div>
@@ -53,7 +53,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?resource_cat=fonts"
+                  href="/category/1"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >خرید و فروش</a>
               </div>
@@ -61,7 +61,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?resource_cat=brushes"
+                  href="/category/2"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >رهن و اجاره</a>
               </div>
@@ -69,7 +69,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?resource_cat=vectors"
+                  href="/category/3"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >مشارکت در ساخت</a>
               </div>
@@ -77,7 +77,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?resource_cat=graphics"
+                  href="/category/4"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >معاوضه</a>
               </div>
@@ -91,7 +91,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://www.facebook.com/yootheme"
+                  href="https://www.facebook.com/saghfosara"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >فیس بوک</a>
               </div>
@@ -107,7 +107,7 @@
             <li class="el-item">
               <div class="el-content uk-panel">
                 <a
-                  href="https://www.behance.net/"
+                  href="https://www.instagram.com/"
                   class="el-link uk-link-muted uk-margin-remove-last-child"
                 >اینستاگرام</a>
               </div>

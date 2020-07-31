@@ -6,7 +6,6 @@
 
     <footer-menu />
     <footer-section />
-    <form-modal />
   </div>
 
 </template>
@@ -16,14 +15,12 @@
 import Header from '~/components/header.vue'
 import FooterMenu from '~/components/footer-menu.vue'
 import FooterSection from '~/components/footer.vue'
-import FormModal from '~/components/form-modal.vue'
 
 export default {
   components: {
     Header,
     FooterMenu,
     FooterSection,
-    FormModal
   }
 }
 </script>

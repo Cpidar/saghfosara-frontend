@@ -10,7 +10,7 @@
     />
     <banner-category :items="categories" />
     <blog-grid :posts="posts" />
-    <banner-about />
+    <banner-about :items="about" />
     <banner-contactme />
   </div>
 </template>
@@ -43,8 +43,6 @@ export default {
       title: "جدیدترین املاک ثبت شده",
       homesConnection: { aggregate: { count: 1 } },
       // categories: [],
-      pageSize: 16,
-      hasMore: true
     };
   },
   // apollo: {
@@ -69,49 +67,81 @@ export default {
   //   }
   // },
   methods: {
-    showMore(page) {
+    async showMore(page) {
       const start = page * this.pageSize;
       // Fetch more data and transform the original result
-      this.$apollo.queries.homes.fetchMore({
-        // New variables
-        variables: {
-          start,
-          limit: this.pageSize
-        },
-        // Transform the previous result with new data
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          const newHomes = fetchMoreResult.homes;
-          const homeCount = this.homesConnection.aggregate.totalCount;
-          this.hasMore = homeCount > start + 1;
+      // this.$apollo.queries.homes.fetchMore({
+      //   // New variables
+      //   variables: {
+      //     start,
+      //     limit: this.pageSize
+      //   },
+      //   // Transform the previous result with new data
+      //   updateQuery: (previousResult, { fetchMoreResult }) => {
+      //     const newHomes = fetchMoreResult.homes;
+      //     const homeCount = this.homesConnection.aggregate.totalCount;
+      //     this.hasMore = homeCount > start + 1;
 
-          return {
-            homes: [...previousResult.homes, ...newHomes]
-          };
-        }
-      });
+      //     return {
+      //       homes: [...previousResult.homes, ...newHomes]
+      //     };
+      //   }
+      // });
+      const newHomes = await this.$axios.$get('/properties', {
+      // token: process.env.apiToken,
+      params: {
+        published:true,
+        _start: start,
+        _limit: this.pageSize
+      }
+    })
+    this.$data.homes = await [ ...this.$data.homes, ...newHomes ]
+    this.hasMore = await this.$data.homes.length < this.$data.homesCount
     }
   },
-  async asyncData ({ $content,  $axios}) {
+  async asyncData ({ $axios }) {
+    const pageSize = 16
     // const homes = await $content('homes').fetch()
-    const homes = await $axios.$post('/collections/get/property', {
-      token: process.env.apiToken,
-      filter: {published:true}
+    const homes = await $axios.$get('/properties', {
+      // token: process.env.apiToken,
+      params: {
+        published:true,
+        _start: 0,
+        _limit: pageSize
+      }
     })
-    const categories = await $axios.$post('/collections/get/assignment', {
-        token: process.env.apiToken
+    const homesCount = await $axios.$get('/properties/count', {
+      // token: process.env.apiToken,
+      params: {
+        published:true,
+      }
+    })
+    const categories = await $axios.$get('/categories', {
+        // token: process.env.apiToken
     })
 
     // const posts = await $content('posts').fetch()
-    const postApi = await $axios.$post('/collections/get/blog', {
-      token: process.env.apiToken,
-      filter: {published:true}
+    const postApi = await $axios.$get('/posts', {
+      // token: process.env.apiToken,
+      params: {
+        published:true,
+        _limit: 3
+      }
+    }) 
+
+    const about = await $axios.$get('/about', {
+      // token: process.env.apiToken,
     }) 
 
     return {
       // homes,
-      homes: homes.entries,
-      categories: categories.entries,
-      posts: postApi.entries
+      homes: homes,
+      categories: categories,
+      posts: postApi,
+      about,
+      pageSize,
+      homesCount,
+      hasMore: homesCount > pageSize
     }
   }
 };

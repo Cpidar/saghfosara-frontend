@@ -4,7 +4,7 @@
     uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-fade; delay: false;"
   >
     <div
-      src="/images/bottom-bg.svg"
+      data-src="/images/bottom-bg.svg"
       uk-img
       class="uk-background-norepeat uk-background-contain uk-background-bottom-right uk-section uk-section-large"
       uk-parallax="bgx: -120,-120;bgy: 420,120;easing: 0.5"
@@ -157,9 +157,8 @@
                   class="el-image"
                   alt
                   target="!*"
-                  data-src="/blog-category-right.svg"
+                  data-src="/images/blog-category-right.svg"
                   uk-img
-                  src="/blog-category-right.svg"
                 />
               </div>
             </div>
@@ -169,125 +168,43 @@
           <div class="uk-width-1-1@m uk-first-column">
             <div class="uk-margin-xlarge">
               <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-grid-match uk-grid" uk-grid>
-                <div class="uk-first-column">
+                <div v-for="post in posts" :key="post.id">
                   <div
                     class="el-item uk-panel uk-margin-remove-first-child uk-scrollspy-inview uk-animation-fade"
                     uk-scrollspy-class
                     style
                   >
-                    <a href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=153">
+                    <a :href="'/posts/'+post.id">
                       <img
                         class="el-image uk-border-rounded"
                         alt
-                        data-src="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-46d2b9b5.webp"
-                        data-srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-f6f9f1af.webp 768w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-46d2b9b5.webp 780w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-b8103391.webp 1024w, https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-admin/admin-ajax.php?action=kernel&amp;p=theme%2Fimage&amp;src=WyJ3cC1jb250ZW50XC91cGxvYWRzXC95b290aGVtZVwvYmxvZy1wb3N0LWltcHJvdmUteW91ci10eXBvZ3JhcGhpYy1za2lsbHMtd2l0aC1lZGl0b3JpYWwtZGVzaWduLmpwZyIsW1siZG9SZXNpemUiLFsxMzY3LDkxMSwxMzY3LDkxMV1dLFsiZG9Dcm9wIixbMTM2Niw5MTEsMCwwXV0sWyJ0eXBlIixbIndlYnAiLCI4NSJdXV1d&amp;hash=597998887555edf4eefde230a0a4682b 1366w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-fb126994.webp 1560w"
                         data-sizes="(min-width: 780px) 780px"
                         data-width="780"
                         data-height="520"
                         uk-img
-                        src="https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-46d2b9b5.webp"
+                        :data-src="imageUrl+post.image.url"
+                        :src="imageUrl+post.image.url"
                         sizes="(min-width: 780px) 780px"
-                        srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-f6f9f1af.webp 768w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-46d2b9b5.webp 780w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-b8103391.webp 1024w, https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-admin/admin-ajax.php?action=kernel&amp;p=theme%2Fimage&amp;src=WyJ3cC1jb250ZW50XC91cGxvYWRzXC95b290aGVtZVwvYmxvZy1wb3N0LWltcHJvdmUteW91ci10eXBvZ3JhcGhpYy1za2lsbHMtd2l0aC1lZGl0b3JpYWwtZGVzaWduLmpwZyIsW1siZG9SZXNpemUiLFsxMzY3LDkxMSwxMzY3LDkxMV1dLFsiZG9Dcm9wIixbMTM2Niw5MTEsMCwwXV0sWyJ0eXBlIixbIndlYnAiLCI4NSJdXV1d&amp;hash=597998887555edf4eefde230a0a4682b 1366w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-improve-your-typographic-skills-with-editorial-design-fb126994.webp 1560w"
                       />
                     </a>
 
                     <h2 class="el-title uk-h3 uk-margin-top uk-margin-remove-bottom">
-                      <a
-                        href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=153"
-                        class="uk-link-reset"
-                      >Improve Your Typographic Skills with Editorial Design</a>
+                      <a :href="'/posts/'+ post.id" class="uk-link-reset">{{post.title}}</a>
                     </h2>
 
                     <div class="uk-margin-small-top">
                       <a
-                        href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=153"
+                        :href="'/posts/'+ post.id"
                         class="el-link uk-button uk-button-text"
-                      >Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div
-                    class="el-item uk-panel uk-margin-remove-first-child uk-scrollspy-inview uk-animation-fade"
-                    uk-scrollspy-class
-                    style
-                  >
-                    <a href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=150">
-                      <img
-                        class="el-image uk-border-rounded"
-                        alt
-                        data-src="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-40e036a1.webp"
-                        data-srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-670f6124.webp 768w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-40e036a1.webp 780w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-70ef1a52.webp 1024w, https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-admin/admin-ajax.php?action=kernel&amp;p=theme%2Fimage&amp;src=WyJ3cC1jb250ZW50XC91cGxvYWRzXC95b290aGVtZVwvYmxvZy1wb3N0LWhvdy1zb2NpYWwtbWVkaWEtaW1wYWN0cy13ZWItZGVzaWduLmpwZyIsW1siZG9SZXNpemUiLFsxMzY3LDkxMSwxMzY3LDkxMV1dLFsiZG9Dcm9wIixbMTM2Niw5MTEsMCwwXV0sWyJ0eXBlIixbIndlYnAiLCI4NSJdXV1d&amp;hash=9b2cb23fd65ee67aceffe9679695e560 1366w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-01bf3123.webp 1560w"
-                        data-sizes="(min-width: 780px) 780px"
-                        data-width="780"
-                        data-height="520"
-                        uk-img
-                        src="https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-40e036a1.webp"
-                        sizes="(min-width: 780px) 780px"
-                        srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-670f6124.webp 768w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-40e036a1.webp 780w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-70ef1a52.webp 1024w, https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-admin/admin-ajax.php?action=kernel&amp;p=theme%2Fimage&amp;src=WyJ3cC1jb250ZW50XC91cGxvYWRzXC95b290aGVtZVwvYmxvZy1wb3N0LWhvdy1zb2NpYWwtbWVkaWEtaW1wYWN0cy13ZWItZGVzaWduLmpwZyIsW1siZG9SZXNpemUiLFsxMzY3LDkxMSwxMzY3LDkxMV1dLFsiZG9Dcm9wIixbMTM2Niw5MTEsMCwwXV0sWyJ0eXBlIixbIndlYnAiLCI4NSJdXV1d&amp;hash=9b2cb23fd65ee67aceffe9679695e560 1366w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-how-social-media-impacts-web-design-01bf3123.webp 1560w"
-                      />
-                    </a>
-
-                    <h2 class="el-title uk-h3 uk-margin-top uk-margin-remove-bottom">
-                      <a
-                        href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=150"
-                        class="uk-link-reset"
-                      >How Social Media Impacts Web Design</a>
-                    </h2>
-
-                    <div class="uk-margin-small-top">
-                      <a
-                        href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=150"
-                        class="el-link uk-button uk-button-text"
-                      >Read More</a>
+                      >ادامه مطالب</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="uk-margin">
-              <div
-                class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-row-large uk-grid-match uk-grid"
-                uk-grid
-              >
-                <div class="uk-first-column">
-                  <a
-                    class="el-item uk-panel uk-margin-remove-first-child uk-link-toggle uk-display-block uk-scrollspy-inview uk-animation-fade"
-                    href="https://demo.yootheme.com/themes/wordpress/2020/design-bites/?p=10"
-                    uk-scrollspy-class
-                    style
-                  >
-                    <img
-                      class="el-image uk-border-rounded"
-                      alt
-                      data-src="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-1ffbbc34.webp"
-                      data-srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-1ffbbc34.webp 370w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-15cd965f.webp 740w"
-                      data-sizes="(min-width: 370px) 370px"
-                      data-width="370"
-                      data-height="247"
-                      uk-img
-                      src="https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-1ffbbc34.webp"
-                      sizes="(min-width: 370px) 370px"
-                      srcset="/themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-1ffbbc34.webp 370w, /themes/wordpress/2020/design-bites/wp-content/themes/yootheme/cache/blog-post-recommendation-change-by-design-15cd965f.webp 740w"
-                    />
 
-                    <h2
-                      class="el-title uk-h4 uk-margin-top uk-margin-remove-bottom"
-                    >Recommen­dation: Change by Design</h2>
-
-                    <div class="uk-margin-small-top">
-                      <div class="el-link uk-button uk-button-text">Read More</div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="uk-margin-xlarge uk-text-center"
-              uk-scrollspy-class
-            >
+            <!-- <div class="uk-margin-xlarge uk-text-center" uk-scrollspy-class>
               <ul class="uk-pagination uk-margin-remove-bottom uk-flex-center">
                 <li class="uk-active">
                   <span>1</span>
@@ -321,59 +238,14 @@
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> -->
+           <div class="uk-margin-xlarge uk-text-center" uk-scrollspy-class>
+            <button
+              class="uk-button uk-button-danger"
+              v-if="HasMore"
+              @click="showMore"
+            >نمایش موارد بیشتر</button>
           </div>
-        </div>
-        <div class="uk-grid-margin uk-container uk-container-small">
-          <div class="tm-grid-expand uk-grid uk-grid-stack" uk-grid>
-            <div class="uk-grid-item-match uk-width-1-1@m uk-first-column">
-              <div class="uk-tile-secondary uk-tile">
-                <h2
-                  class="uk-margin-medium uk-text-center"
-                  uk-scrollspy-class
-                  style="visibility: hidden;"
-                >
-                  Subscribe to Our Newsletter to
-                  <br class="uk-visible@s" />Get Our Weekly Updates
-                </h2>
-                <div
-                  class="uk-width-2xlarge uk-margin-auto@s uk-margin-auto uk-text-center"
-                  uk-scrollspy-class
-                  style="visibility: hidden;"
-                >
-                  <form
-                    class="uk-form uk-panel js-form-newsletter"
-                    method="post"
-                    action="https://demo.yootheme.com/themes/wordpress/2020/design-bites/wp-admin/admin-ajax.php?action=kernel&amp;p=theme%2Fnewsletter%2Fsubscribe"
-                  >
-                    <div class="uk-grid-small uk-child-width-expand@s uk-grid" uk-grid>
-                      <div class="uk-first-column">
-                        <input
-                          class="el-input uk-input"
-                          type="email"
-                          name="email"
-                          placeholder="Email address"
-                          required
-                        />
-                      </div>
-                      <div class="uk-width-auto@s">
-                        <button
-                          class="el-button uk-button uk-button-default"
-                          type="submit"
-                        >Subscribe</button>
-                      </div>
-                    </div>
-
-                    <input
-                      type="hidden"
-                      name="settings"
-                      value="ujsh9BclQq+PWmjQkZ6M8A==.UGQvRlpZaHdLcmZPOXN1N2JoZDhhcDhWT1VaWkxNa2E2dU41UDFCS0pmN3Vta3dqVkpqUkpIVkVZUDFRTjZGY0lBNFViTmVnSnNEYS93VTc3YnNJMi9FVEVacGZpdFhvR1p2UVlwZXZFMkZFMDdYQVMzVWhsZnVWeUw0akJYN2g5Ny9DcGFKWC9EUHVKd282cWhpSXNpaTZHVUZpbERvRnA0VTc3V2NDRTY2TERRM2hnMTVZdDRpL1g3cWdRZHAvdnFNTUM0cU1jMWdBRklJOHFhZkpPMGVnUHUrbXMwWGEvNHNrMHQwY1YxRysybk5pUWQzNVRXL0xsR2MzRTVXYk5FNnY4alU0aXRUL3djdWlKRGNnRWJTY2lNeDhwbkpkU1ZUZmRCQUlKazQ9.ZDFmMmIzYjU3NmVjNTBmZDJlNGFkZDUxZjY4MDRjNWMzYjcxNDkxOWI4ZjhkNjg3ZDE2MDZkMjE3M2NhNWFkNQ=="
-                    />
-                    <div class="message uk-margin uk-hidden"></div>
-                  </form>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -382,5 +254,50 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      imageUrl: process.env.apiUrl
+    }
+  },
+  async asyncData({ $axios }) {
+    const pageSize = 4
+    const posts = await $axios.$get("/posts", {
+      // token: process.env.apiToken,
+      params: {
+        published: true,
+        _limit: pageSize
+      },
+    });
+    const postsCount = await $axios.$get("/posts/count", {
+      // token: process.env.apiToken,
+      params: {
+        published: true,
+      },
+    });
+    return {
+      posts,
+      pageSize,
+      postsCount,
+      hasMore: postsCount > pageSize,
+      page: 0
+    };
+  },
+  methods: {
+    async showMore() {
+      this.page++
+      const start = this.page * this.pageSize;
+      const newPosts = await this.$axios.$get('/properties', {
+      // token: process.env.apiToken,
+      params: {
+        published:true,
+        _start: start,
+        _limit: this.pageSize
+      }
+    })
+    this.$data.posts = await [ ...this.$data.posts, ...newPosts ]
+    this.hasMore = await this.$data.posts.length < this.$data.postsCount
+    }
+  },
+  };
 </script>

@@ -26,7 +26,7 @@ export default {
   props: ["images"],
   data() {
     return {
-      api: API_SERVER
+      api: process.env.apiUrl
     };
   }
 };

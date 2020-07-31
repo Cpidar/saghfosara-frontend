@@ -28,7 +28,7 @@
               <div uk-scrollspy-class v-for="post in posts" :key="post.id">
                 <a
                   class="el-item uk-card uk-card-default uk-card-hover uk-link-toggle uk-display-block"
-                  :href="'/blog/'+post.id"
+                  :href="'/posts/'+post.id"
                 >
                   <div class="uk-card-media-top">
                     <img
@@ -37,7 +37,7 @@
                       width="610"
                       height="355"
                       uk-img
-                      :data-src="baseImagePath + post.image.path"
+                      :data-src="baseImagePath + post.image.url"
                       sizes="(min-width: 610px) 610px"
                     />
                   </div>
@@ -50,11 +50,11 @@
             </div>
           </div>
           <!-- see all -->
-          <div class="uk-margin-large uk-text-right@m">
+          <div class="uk-margin-large uk-text-left@m">
             <a
               class="el-content uk-button uk-button-text"
-              href="/themes/wordpress/2020/creative-hub/index.php?post_type=post"
-            >See All</a>
+              href="/blog"
+            >نمایش همه</a>
           </div>
         </div>
       </div>
@@ -64,10 +64,10 @@
 
 <script>
 export default {
-  props: ["posts"],
+  props: ["posts", 'hasMore'],
   computed: {
     baseImagePath() {
-      return process.env.imagePath;
+      return process.env.apiUrl;
     },
   },
 };

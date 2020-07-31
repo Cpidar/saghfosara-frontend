@@ -1,5 +1,6 @@
 <template>
-  <div class="uk-card uk-card-default">
+<div>
+  <div class="uk-card uk-card-default" v-if="!submited">
     <div class="uk-card-header">
       <!-- <button class="uk-modal-close-full uk-close-medim" type="button" uk-close></button> -->
 
@@ -26,36 +27,63 @@
           </div>
 
           <div class="uk-width-1-2@s">
-            <label class="uk-form-label" for="form-stacked-text">محله</label>
+            <label class="uk-form-label" for="form-stacked-text">محله یا منطقه</label>
             <div class="uk-form-controls">
-              <input
+              <select
                 v-model="formData.neighborhood"
                 name="neighborhood"
-                class="uk-input"
-                id="form-stacked-text"
-                type="text"
-                placeholder="محله مورد نظر را تایپ کنید"
-              />
+                class="uk-select"
+                id="form-stacked-select"
+              >
+                <option
+                  v-for="neighborhood in neighborhoods"
+                  :key="neighborhood.id"
+                  :value="neighborhood.id"
+                >{{neighborhood.name}}</option>
+              </select>
             </div>
           </div>
 
           <div class="uk-width-1-2@s">
             <label class="uk-form-label" for="form-stacked-select">نوع واگذاری</label>
             <div class="uk-form-controls">
-              <select v-model="formData.category" name="category" class="uk-select" id="form-stacked-select">
-                <option>1</option>
+              <select
+                v-model="formData.category"
+                name="category"
+                class="uk-select"
+                id="form-stacked-select"
+              >
+                <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{cat.name}}</option>
               </select>
             </div>
           </div>
           <div class="uk-width-1-2@s">
             <label class="uk-form-label" for="form-stacked-select">نوع ملک</label>
             <div class="uk-form-controls">
-              <select v-model="formData.propertyType" name="propertyType" class="uk-select" id="form-stacked-select">
-                <option>Option 01</option>
+              <select
+                v-model="formData.type"
+                name="propertyType"
+                class="uk-select"
+                id="form-stacked-select"
+              >
+                <option v-for="type in types" :key="type.id" :value="type.id">{{type.name}}</option>
               </select>
             </div>
           </div>
           <div class="uk-width-1-2@s">
+            <label class="uk-form-label" for="form-stacked-text">شماره تماس</label>
+            <div class="uk-form-controls">
+              <input
+                v-model.number="formData.phone"
+                name="phone"
+                class="uk-input"
+                id="form-stacked-text"
+                type="number"
+                placeholder="شماره تماس"
+              />
+            </div>
+          </div>
+          <div class="uk-width-1-3@s">
             <label class="uk-form-label" for="form-stacked-text">سن بنا</label>
             <div class="uk-form-controls">
               <input
@@ -64,24 +92,24 @@
                 class="uk-input"
                 id="form-stacked-text"
                 type="number"
-                placeholder="سن"
+                placeholder="چند سال ساخت"
               />
             </div>
           </div>
-          <div class="uk-width-1-2@s">
+          <div class="uk-width-1-3@s">
             <label class="uk-form-label" for="form-stacked-text">متراژ</label>
             <div class="uk-form-controls">
               <input
                 v-model.number="formData.size"
                 name="size"
-                class="uk-input uk-form-width-medium"
+                class="uk-input"
                 id="form-stacked-text"
                 type="number"
                 placeholder="متراژ"
               />
             </div>
           </div>
-          <div class="uk-width-1-2@s">
+          <div class="uk-width-1-3@s">
             <label class="uk-form-label" for="form-stacked-text">قیمت</label>
             <div class="uk-form-controls">
               <input
@@ -101,7 +129,7 @@
               <textarea v-model="formData.description" name="description" class="uk-textarea"></textarea>
             </div>
           </div>
-          <div class="uk-width-1-1">
+          <!-- <div class="uk-width-1-1">
             <div class="uk-grid uk-child-width-1-4@s uk-grid-small" uk-grid>
               <div class="uk-text-center" v-for="(pic, index) in thumbnails" :key="index">
                 <div class="uk-inline-clip uk-transition-toggle uk-light" tabindex="0">
@@ -118,20 +146,34 @@
               <div class="uk-text-center">
                 <div class="uk-placeholder uk-text-center">
                   <div uk-form-custom>
-                    <input type="file" name="pics" accept="image/jpeg" @change="uploadImage" multiple />
+                    <input
+                      type="file"
+                      name="pics"
+                      accept="image/jpeg"
+                      @change="uploadImage"
+                      multiple
+                    />
                     <span class="uk-icon-button" uk-icon="icon: cloud-upload; ratio: 1"></span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
       <div class="uk-card-footer uk-text-left">
         <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-        <button class="uk-button uk-button-primary" type="button" @click="submit">Save</button>
+        <button class="uk-button uk-button-primary" type="button" @click="createHome">Save</button>
       </div>
     </div>
+  </div>
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" v-else>
+    <h3 class="uk-card-title">ارسال اطلاعات با موفقیت انجام شد</h3>
+    <p>در کوتاهترین زمان ممکن با شما تماس گرفته می شود</p>
+        <div class="uk-card-footer">
+        <a href="/" class="uk-button uk-button-text">بازگشت به صفحه اصلی</a>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -139,24 +181,25 @@
 // import HomeMutation from "~/apollo/mutations/home/create-home.gql";
 
 export default {
+  props: ['categories', 'neighborhoods', 'types'],
   data() {
     return {
+      submited: false,
       formData: {
         title: "",
         description: "",
-        price: 0,
-        status: "draft",
+        price: "",
         pics: [],
         category: 1,
         address: "",
-        size: 0,
-        propertyType: "",
-        phone: 3424,
+        size: "",
+        type: "",
+        phone: "",
         neighborhood: "",
         builtDate: "",
-        publish: false
+        published: false,
       },
-      thumbnails: []
+      thumbnails: [],
     };
   },
   methods: {
@@ -183,13 +226,12 @@ export default {
       let form = this.$refs["adForm"];
       let formData = new FormData();
       let formElements = form.elements;
+      console.log(formElements)
       let data = {};
-      console.log(formElements);
       for (let i = 0; i < formElements.length; i++) {
         const currentElement = formElements[i];
         if (!["submit", "file"].includes(currentElement.type)) {
           data[currentElement.name] = currentElement.value;
-          console.log(data)
         } else if (currentElement.type === "file") {
           if (currentElement.files.length === 1) {
             const file = currentElement.files[0];
@@ -203,11 +245,11 @@ export default {
           }
         }
       }
-      console.log(data);
       formData.append("data", JSON.stringify(data));
+      console.log(data);
       this.$axios
-        .post("http://localhost/api/homes", formData)
-        .then(res => console.log(res));
+        .$post("/properties", formData)
+        .then(res => this.submited = true);
     },
     uploadImage(e) {
       const files = e.target.files || e.dataTransfer.files;
@@ -221,7 +263,7 @@ export default {
       for (var index = 0; index < files.length; index++) {
         vm.formData.pics.push(files[index]);
         var reader = new FileReader();
-        reader.onload = function(event) {
+        reader.onload = function (event) {
           const imageUrl = event.target.result;
           vm.thumbnails.push(imageUrl);
         };
@@ -229,7 +271,7 @@ export default {
       }
     },
     removeImage(index) {
-      this.pics.splice(index, 1);
+      this.formData.pics.splice(index, 1);
     },
     async submit() {
       const homes = await this.$axios.$post("/forms/submit/homeFromCustomer", {
@@ -237,6 +279,6 @@ export default {
         form: this.formData,
       });
     },
-  }
+  },
 };
 </script>
