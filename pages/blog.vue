@@ -266,7 +266,8 @@ export default {
       // token: process.env.apiToken,
       params: {
         published: true,
-        _limit: pageSize
+        _limit: pageSize,
+        _sort: "focused:DESC:updated_at:DESC",
       },
     });
     const postsCount = await $axios.$get("/posts/count", {
@@ -292,7 +293,8 @@ export default {
       params: {
         published:true,
         _start: start,
-        _limit: this.pageSize
+        _limit: this.pageSize,
+        _sort: "focused:DESC:updated_at:DESC",
       }
     })
     this.$data.posts = await [ ...this.$data.posts, ...newPosts ]

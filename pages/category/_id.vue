@@ -97,6 +97,7 @@ export default {
       params: {
         published: true,
         category: params.id,
+        _sort: "updated_at:DESC",
       },
     });
 

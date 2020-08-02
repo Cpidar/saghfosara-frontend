@@ -24,6 +24,7 @@
                   uk-scrollspy-class
                 >
                   <div class="uk-card-media-top">
+                    <div class="uk-card-badge uk-label uk-label-warning" v-if="home.focused">{{home.flag}}</div>
                     <img
                       class="el-image"
                       alt
