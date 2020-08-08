@@ -14,17 +14,17 @@
         <div class="tm-grid-expand uk-margin-xlarge uk-grid" uk-grid>
           <div class="uk-width-3-4@s uk-first-column">
             <h1
-              class="uk-heading-large uk-position-relative uk-margin-medium uk-scrollspy-inview uk-animation-fade"
+              class="uk-heading-medium uk-position-relative uk-margin-medium uk-scrollspy-inview"
               uk-scrollspy-class
               style
-            >اخبار - دکوراسیون - سبک زندگی</h1>
+            >{{blogPage.title}}</h1>
             <div
-              class="uk-text-lead uk-position-relative uk-margin-large uk-margin-remove-top uk-width-2xlarge uk-scrollspy-inview uk-animation-fade"
+              class="uk-text-lead uk-position-relative uk-margin-large uk-margin-remove-top uk-width-2xlarge uk-scrollspy-inview"
               uk-scrollspy-class
               style
-            >Lorem ipsum dolor sit amet, consectur adipiscing elit, usmod tempor incididunt ut labore et dolore magna aliqua enim minim veniam.</div>
+            >{{blogPage.subtitle}}</div>
             <div
-              class="uk-position-relative uk-margin-xlarge uk-margin-remove-top uk-scrollspy-inview uk-animation-fade"
+              class="uk-position-relative uk-margin-xlarge uk-margin-remove-top uk-scrollspy-inview"
               style="z-index: 3;"
               uk-scrollspy-class
             >
@@ -242,7 +242,7 @@
            <div class="uk-margin-xlarge uk-text-center" uk-scrollspy-class>
             <button
               class="uk-button uk-button-danger"
-              v-if="HasMore"
+              v-if="hasMore"
               @click="showMore"
             >نمایش موارد بیشتر</button>
           </div>
@@ -276,12 +276,14 @@ export default {
         published: true,
       },
     });
+    const blogPage = await $axios.$get("/blog-page")
     return {
       posts,
       pageSize,
       postsCount,
       hasMore: postsCount > pageSize,
-      page: 0
+      page: 0,
+      blogPage
     };
   },
   methods: {

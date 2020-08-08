@@ -269,7 +269,7 @@ export default {
       formData.append("data", JSON.stringify(data));
       console.log(data);
       this.$axios
-        .$post("/requests", formData)
+        .$post("/properties", formData)
         .then((res) => (this.submited = true))
         .catch(err => this.error = true)
     },

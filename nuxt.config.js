@@ -1,15 +1,17 @@
 
+const getRoutes = require('./utils/getRoutes.js')
+
 export default {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  target: 'static',
+  target: 'server',
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -18,7 +20,7 @@ export default {
     htmlAttrs: {
       dir: 'rtl'
     },
-    title: process.env.npm_package_name || '',
+    title: 'سقف و سرا' || process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -80,7 +82,8 @@ export default {
   modules: [
     // '@nuxtjs/apollo',
     '@nuxtjs/axios',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/sitemap'
   ],
 
   axios: {
@@ -102,6 +105,15 @@ export default {
   //     }
   //   }
   // },
+
+  sitemap: {
+    routes() {
+      return getRoutes();
+    },
+    path: '/sitemap.xml',
+    gzip: true,
+    generate: false,
+  },
 
   env: {
     // strapiBaseUri: process.env.API_URL || "http://localhost"

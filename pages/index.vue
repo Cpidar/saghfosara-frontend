@@ -1,6 +1,6 @@
 <template>
   <div>
-    <banner-showcase :items="categories" />
+    <banner-showcase :items="categories" :showcase="showcase" />
     <items-grid
       :title="title"
       :page-size="this.pageSize"
@@ -103,6 +103,7 @@ export default {
   async asyncData ({ $axios }) {
     const pageSize = 16
     // const homes = await $content('homes').fetch()
+    const showcase = await $axios.$get('/showcase')
     const homes = await $axios.$get('/properties', {
       // token: process.env.apiToken,
       params: {
@@ -144,7 +145,8 @@ export default {
       about,
       pageSize,
       homesCount,
-      hasMore: homesCount > pageSize
+      hasMore: homesCount > pageSize,
+      showcase
     }
   }
 };

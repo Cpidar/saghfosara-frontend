@@ -7,7 +7,7 @@
     tm-header-transparent-placeholder
   >
     <div
-      data-src="/images/home-header2.jpg"
+      :data-src="server+showcase.bg01.url"
       data-sizes="(max-aspect-ratio: 1920/940) 204vh"
       uk-img
       class="uk-background-norepeat uk-background-cover uk-background-bottom-center uk-section uk-section-large uk-flex uk-flex-middle"
@@ -23,7 +23,7 @@
                 class="uk-h5 uk-margin-small uk-text-center"
                 uk-scrollspy-class
                 style='font-family: "Iransans-bold"'
-              >وبسایت جامع املاک اصفهان</h1>
+              >{{showcase.subtitle1}}</h1>
               <!-- <div class="uk-text-center">
                 <form class="uk-search uk-search-large uk-background-secondary uk-border-rounded">
                   <span uk-search-icon></span>
@@ -34,12 +34,12 @@
                 class="uk-heading-large uk-margin-small uk-text-center uk-scrollspy-inview"
                 uk-scrollspy-class
                 style
-              >سقف و سرا</h2>
+              >{{showcase.title}}</h2>
               <div
                 class="uk-text-lead uk-margin-small uk-text-center"
                 uk-scrollspy-class="uk-animation-slide-bottom"
                 style
-              >خرید – فروش – رهن و اجاره</div>
+              >{{showcase.subtitle2}}</div>
             </div>
           </div>
         </div>
@@ -54,6 +54,12 @@ import SearchBox from "~/components/search-box.vue";
 export default {
   components: {
     SearchBox
+  },
+  props: ['showcase', 'items'],
+  data() {
+    return {
+      server: process.env.apiUrl,
+    }
   }
 };
 </script>
