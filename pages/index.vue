@@ -90,7 +90,7 @@ export default {
       const newHomes = await this.$axios.$get('/properties', {
       // token: process.env.apiToken,
       params: {
-        _sort: "updated_at:DESC",
+        _sort: "focused:DESC:updated_at:DESC",
         published:true,
         _start: start,
         _limit: this.pageSize,

@@ -111,5 +111,18 @@ export default {
       title: category.name,
     };
   },
+    head() {
+    let category = this.category
+    return {
+      title: `${category.name} - سقف و سرا`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${category.name}`
+        }
+      ]
+    }
+  }
 };
 </script>

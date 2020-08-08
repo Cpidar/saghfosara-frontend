@@ -115,5 +115,18 @@ export default {
       apiUrl: process.env.apiUrl
     };
   },
+    head() {
+    let post = this.post
+    return {
+      title: `${post.title} - سقف و سرا`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${post.title}`
+        }
+      ]
+    }
+  }
 };
 </script>

@@ -42,6 +42,19 @@ export default {
     return {
       home
     }
+  },
+  head() {
+    let home = this.home
+    return {
+      title: `${home.title} - سقف و سرا`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${home.description}`
+        }
+      ]
+    }
   }
 };
 </script>

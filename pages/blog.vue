@@ -303,5 +303,18 @@ export default {
     this.hasMore = await this.$data.posts.length < this.$data.postsCount
     }
   },
+    head() {
+      let blog = this.blogPage
+    return {
+      title: `مجله سقف و سرا`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${blog.subtitle}`
+        }
+      ]
+    }
+  }
   };
 </script>

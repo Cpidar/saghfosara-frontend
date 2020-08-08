@@ -40,10 +40,13 @@
                     />
                   </div>
                   <div class="uk-card-body uk-margin-remove-first-child">
-                    <h3 class="el-title uk-h5 uk-margin-top uk-margin-remove-bottom">{{home.title}}</h3>
+                    <p class="uk-text-meta uk-margin-remove-bottom">{{home.category.name}}</p>
+                    <h3 class="el-title uk-h5 uk-margin-small">{{home.title}}</h3>
+                    <p class="uk-text-meta uk-margin-remove-top"><span class="uk-margin-small-left" uk-icon="location"></span>{{home.neighborhood.name}}</p>
                     <div
+                    v-if="home.price"
                       class="el-meta uk-text-meta uk-margin-small-top"
-                    >{{new Intl.NumberFormat('fa-IR', { maximumSignificantDigits: 3 }).format(home.price)}}</div>
+                    >{{"قیمت: " + new Intl.NumberFormat('fa-IR', { maximumSignificantDigits: 3 }).format(home.price) + " تومان"}}</div>
                   </div>
                 </a>
               </div>

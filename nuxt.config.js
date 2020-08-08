@@ -18,6 +18,7 @@ export default {
   */
   head: {
     htmlAttrs: {
+      lang: 'fa',
       dir: 'rtl'
     },
     title: 'سقف و سرا' || process.env.npm_package_name,

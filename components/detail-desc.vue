@@ -23,7 +23,7 @@
     <h1 class="uk-text-lead uk-text-large uk-heading-divider">{{item.title}}</h1>
 
     <ul class="uk-list uk-margin-large uk-margin-remove-bottom">
-      <li class="el-item">
+      <li class="el-item" v-if="item.size">
         <div class="uk-child-width-expand uk-grid-column-medium uk-grid-row-small uk-grid" uk-grid>
           <div class="uk-width-small uk-text-break uk-first-column">
             <span class="el-title uk-display-block uk-font-primary">مساحت</span>
@@ -33,17 +33,18 @@
           </div>
         </div>
       </li>
-      <li class="el-item">
+      <li class="el-item" v-if="item.builtDate !== null">
         <div class="uk-child-width-expand uk-grid-column-medium uk-grid-row-small uk-grid" uk-grid>
           <div class="uk-width-small uk-text-break uk-first-column">
             <span class="el-title uk-display-block uk-font-primary">سن بنا</span>
           </div>
           <div class>
-            <div class="el-content uk-panel">{{item.builtDate + ' سال '}}</div>
+            <div class="el-content uk-panel" v-if="item.builtDate>0">{{item.builtDate + ' سال '}}</div>
+            <div class="el-content uk-panel" v-if="item.builtDate==0">نوساز</div>
           </div>
         </div>
       </li>
-      <li class="el-item">
+      <li class="el-item" v-if="item.price">
         <div class="uk-child-width-expand uk-grid-column-medium uk-grid-row-small uk-grid" uk-grid>
           <div class="uk-width-small uk-text-break uk-first-column">
             <span class="el-title uk-display-block uk-font-primary">قیمت</span>
